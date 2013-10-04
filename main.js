@@ -6,7 +6,7 @@ var map = {};
 
 
 function startGame(){
-	map = new Map(pattern3);
+	map = new Map(pattern1);
 	pod = new Pod();
 
 	map.draw();
