@@ -1,12 +1,13 @@
 var clockCount = 0;
 var pod = {};
 var map = {};
+var level = 0;
 //            c.drawImage(IMAGES[self.currMap.name], img_x, img_y, SIZE, SIZE,
 //                            s_x, s_y, SIZE, SIZE);
 
 
 function startGame(){
-	map = new Map(pattern1);
+	map = new Map(pattern[level]);
 	pod = new Pod();
 
 	map.draw();
@@ -17,7 +18,7 @@ function startGame(){
 
 function resetGame(){
 	map = {};
-	map = new Map(pattern2);
+	map = new Map(pattern[level]);
 	pod = new Pod();
 	map.draw();
 	pod.draw();

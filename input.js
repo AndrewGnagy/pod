@@ -11,17 +11,17 @@ function InputEngine(){
 InputEngine.prototype.onKeyDownEvent = function (event) {
     var code = event.keyCode;
 	//console.log(event);
-	if(['Up', 'Down', 'Left', 'Right'].indexOf(event.key) == -1) return;
-	if(event.key == "Up"){
+	if(code < 37 && code > 40) return;
+	if(code == 38){
 		pod.move(0,-1);
 	}
-	if(event.key == "Down"){
+	if(code == 40){
 		pod.move(0, 1);
 	}
-	if(event.key == "Left"){
+	if(code == 37){
 		pod.move(-1,0);
 	}
-	if(event.key == "Right"){
+	if(code == 39){
 		pod.move(1,0);
 	}
 	action();
