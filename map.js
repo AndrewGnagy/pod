@@ -11,13 +11,18 @@ Map.prototype.draw = function () {
 
 	for(var y = 0; y < 10; y++){
 		for(var x = 0; x < 10; x++){
+			//0: Black
 			ctx.fillStyle="#000000";
+			//1: Red
 			if(this.pattern[y][x] == 1)
 				ctx.fillStyle="#FF0000";
+			//2: Green
 			if(this.pattern[y][x] == 2)
 				ctx.fillStyle="#00FF00";
+			//3: Blue
 			if(this.pattern[y][x] == 3)
 				ctx.fillStyle="#0000FF";
+			//4: Purple
 			if(this.pattern[y][x] == 4)
 				ctx.fillStyle="#FF00FF";
 			ctx.fillRect(x*50,y*30,50,30);
