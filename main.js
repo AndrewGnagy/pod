@@ -39,6 +39,7 @@ function action(){
 		
 	if(map.hasWon()){
 		alert("You won!");
+		level++;
 		resetGame();
 		return;
 	}
