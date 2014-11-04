@@ -29,8 +29,7 @@ Map.prototype.hasWon = function () { //Sum array elems and return true if equal 
 	return map.pattern.reduce(function(x,y){return x + y.reduce(function(i,j){return i+j},0)},0) == 1;
 }
 
-var pattern = 
-	   [[1,1,1,0,0,0,0,0,0,0],
+var pattern = [[[1,1,1,0,0,0,0,0,0,0],
 		[0,0,2,0,0,0,0,0,0,0],
 		[0,0,2,0,0,0,0,0,0,0],
 		[0,0,1,0,0,0,0,0,0,0],
