@@ -2,50 +2,47 @@ var clockCount = 0;
 var pod = {};
 var map = {};
 var level = 0;
-//            c.drawImage(IMAGES[self.currMap.name], img_x, img_y, SIZE, SIZE,
-//                            s_x, s_y, SIZE, SIZE);
-
+var score;
+var lives;
 
 function startGame(){
-	map = new Map(pattern[level]);
-	pod = new Pod();
-
-	map.draw();
-	pod.draw();
-
+	resetLvl();
+	score = 0;
+	lives = 2;
 	inputEngine.registerEvents();
 }
 
-function resetGame(){
+function resetLvl(){
 	map = {};
-	map = new Map(pattern[level]);
+	map = new Map(PATTERN[level]);
 	pod = new Pod();
 	map.draw();
 	pod.draw();
 }
 
 function action(){
-	var c = document.getElementById("game");
-	var ctx = c.getContext("2d");
-	ctx.clearRect(0,0,500,300);
 	map.draw();
 	pod.draw();
 
 	if(pod.isDead()){
-		alert("You dead!");
-		resetGame();
+		alert("You dead! Score: " + score);
+		resetLvl();
 		return;
 	}
 		
 	if(map.hasWon()){
-		alert("You won!");
+		alert("Level complete!");
 		level++;
-		resetGame();
+		if (level == PATTERN.length) {
+			map.drawWinScreen();
+		} else {
+			resetLvl();
+		}
 		return;
 	}
+	score++;
 }
 
 $(function() {
-startGame();
-
+	startGame();
 });
