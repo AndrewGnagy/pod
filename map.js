@@ -1,6 +1,11 @@
 function Map(pattern){
 	this.name = "Map";
 	this.pattern = [];
+	this.stars = [];
+	//Stars!
+	for(var i = 0; i < 100; i++) {
+		this.stars.push([getRandomInt(500), getRandomInt(350)]);
+	}
 	for(var x = 0; x<pattern.length; x++){ //Need to copy by value not reference
 		this.pattern.push(pattern[x].slice(0));
 	}
@@ -8,7 +13,7 @@ function Map(pattern){
 Map.prototype.draw = function () {
 	var c = document.getElementById("game");
 	var ctx = c.getContext("2d");
-	clearMap(ctx);
+	clearMap(ctx, this.stars);
 	drawScore(ctx); 
 
 	for(var y = 0; y < 10; y++){
@@ -44,7 +49,7 @@ Map.prototype.draw = function () {
 Map.prototype.drawWinScreen = function () {
 	var c = document.getElementById("game");
 	var ctx = c.getContext("2d");
-	clearMap(ctx);
+	clearMap(ctx, this.stars);
 	drawScore(ctx);
 	ctx.fillStyle="#FFFFFF";
 	ctx.font = "80px Arial";
@@ -55,11 +60,23 @@ Map.prototype.hasWon = function () { //Sum array elems and return true if equal 
 	return map.pattern.reduce(function(x,y){return x + y.reduce(function(i,j){return i+j},0)},0) == 1;
 }
 
-function clearMap(ctx) {
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max));
+}
+
+function clearMap(ctx, stars) {
 	//Clear and fill with black
 	ctx.clearRect(0,0,500,350);
 	ctx.fillStyle="#000000";
 	ctx.fillRect(0,0,500,350);
+
+	//Draw stars!
+	if (stars) {
+		for(var i = 0; i < stars.length; i++) {
+			ctx.fillStyle="#FFFFFF";
+			ctx.fillRect(stars[i][0], stars[i][1], 1, 1);
+		}
+	}
 }
 
 function drawScore(ctx) {
