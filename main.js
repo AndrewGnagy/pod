@@ -7,6 +7,8 @@ var lives;
 
 function startGame(){
 	resetLvl();
+	map.draw();
+	pod.draw();
 	score = 0;
 	lives = 2;
 	inputEngine.registerEvents();
@@ -16,8 +18,6 @@ function resetLvl(){
 	map = {};
 	map = new Map(PATTERN[level]);
 	pod = new Pod();
-	map.draw();
-	pod.draw();
 }
 
 function action(){
@@ -25,18 +25,18 @@ function action(){
 	pod.draw();
 
 	if(pod.isDead()){
-		alert("You dead! Score: " + score);
 		resetLvl();
+		map.drawTextScreen("You dead! Score: " + score);
 		return;
 	}
 		
 	if(map.hasWon()){
-		alert("Level complete!");
 		level++;
 		if (level == PATTERN.length) {
 			map.drawWinScreen();
 		} else {
 			resetLvl();
+			map.drawTextScreen("Level Complete! Score: " + score);
 		}
 		return;
 	}

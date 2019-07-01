@@ -56,6 +56,18 @@ Map.prototype.drawWinScreen = function () {
 	ctx.strokeText("COMPLETE", 20, 300); 
 }
 
+Map.prototype.drawTextScreen = function (textToDraw) {
+	var c = document.getElementById("game");
+	var ctx = c.getContext("2d");
+	clearMap(ctx, this.stars);
+	drawScore(ctx);
+	ctx.fillStyle="#FFFFFF";
+	ctx.font = "40px Arial";
+	ctx.strokeText(textToDraw, 20, 150);
+	ctx.font = "25px Arial";
+	ctx.strokeText("Space to continue", 40, 200);
+}
+
 Map.prototype.hasWon = function () { //Sum array elems and return true if equal to 1
 	return map.pattern.reduce(function(x,y){return x + y.reduce(function(i,j){return i+j},0)},0) == 1;
 }

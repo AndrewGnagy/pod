@@ -10,7 +10,7 @@ function InputEngine(){
 //-----------------------------------------
 InputEngine.prototype.onKeyDownEvent = function (event) {
     var code = event.keyCode;
-	//console.log(event);
+    
 	if(code < 37 && code > 40) return;
 	if(code == 38){
 		pod.move(0,-1);
