@@ -11,20 +11,20 @@ function InputEngine(){
 InputEngine.prototype.onKeyDownEvent = function (event) {
     var code = event.keyCode;
     
-	if(code < 37 && code > 40) return;
-	if(code == 38){
+	if((code < 37 || code > 40) && code != 32) return;
+	if(code == 38) {
 		pod.move(0,-1);
 	}
-	if(code == 40){
+	if(code == 40) {
 		pod.move(0, 1);
 	}
-	if(code == 37){
+	if(code == 37) {
 		pod.move(-1,0);
 	}
-	if(code == 39){
+	if(code == 39) {
 		pod.move(1,0);
 	}
-	action();
+	action(code != 32);
 }
 
 //-----------------------------------------
